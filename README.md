@@ -1,6 +1,6 @@
 # Примеры кода на Python 2026: лучшие практики, разбор и задачи с решениями
 
-> **Python примеры кода 2026** — практическое руководство на русском языке: разбор лучших примеров кода на Python, современные паттерны Python 3.12–3.14, чистый код, асинхронность, типизация, тестирование и задачи для практики с решениями. Подходит для начинающих, junior-, middle- и senior-разработчиков, а также для подготовки к собеседованию по Python.
+> **Python примеры кода 2026** — практическое руководство на русском языке: разбор лучших примеров кода на Python, современные паттерны Python 3.12–3.15, чистый код, асинхронность, типизация, тестирование, продвинутые темы для middle+/senior и задачи для практики с решениями. Подходит для начинающих, junior-, middle- и senior-разработчиков, а также для подготовки к собеседованию по Python.
 
 ![Python](https://img.shields.io/badge/Python-3.12%20|%203.13%20|%203.14-blue)
 ![Язык](https://img.shields.io/badge/язык-русский-red)
@@ -8,7 +8,7 @@
 ![Лицензия](https://img.shields.io/badge/лицензия-MIT-lightgrey)
 ![Tests](https://github.com/justxor/python-primery-koda-2026/actions/workflows/tests.yml/badge.svg)
 
-**Ключевые темы:** примеры кода Python, лучшие практики Python 2026, python для начинающих, задачи по Python с решениями, чистый код на Python, асинхронный Python, asyncio примеры, типизация в Python, pytest примеры, FastAPI пример, парсинг на Python, подготовка к собеседованию Python, Python 3.14 новые возможности, дескрипторы, метаклассы, contextvars, free-threaded Python, t-строки, паттерны проектирования на Python.
+**Ключевые темы:** примеры кода Python, лучшие практики Python 2026, python для начинающих, задачи по Python с решениями, чистый код на Python, асинхронный Python, asyncio примеры, типизация в Python, pytest примеры, FastAPI пример, парсинг на Python, подготовка к собеседованию Python, Python 3.14 и 3.15 новые возможности, задачи для senior, дескрипторы, метаклассы, contextvars, free-threaded Python, t-строки, паттерны проектирования на Python.
 
 ---
 
@@ -50,14 +50,16 @@
    - [Продвинутые генераторы и ExitStack](#18-продвинутые-генераторы-send-yield-from-exitstack)
    - [Паттерны: Result, DI, Circuit Breaker](#19-архитектурные-паттерны-result-di-circuit-breaker)
    - [Python 3.14 в коде: t-строки и annotationlib](#20-python-314-в-коде-t-строки-annotationlib-except-без-скобок)
-5. [Что нового в Python 3.13 и 3.14](#что-нового-в-python-313-и-314)
+5. [Что нового в Python 3.13, 3.14 и 3.15](#что-нового-в-python-313-314-и-315)
 6. [Практика: задачи по Python с решениями](#практика-задачи-по-python-с-решениями)
+   - [Задачи уровня middle+ / senior](#задачи-уровня-middle--senior)
 7. [Мини-проекты для портфолио](#мини-проекты-для-портфолио)
 8. [Тестирование: pytest примеры](#тестирование-pytest-примеры)
 9. [Частые ошибки новичков в Python](#частые-ошибки-новичков-в-python)
 10. [Вопросы с собеседований по Python](#вопросы-с-собеседований-по-python)
 11. [FAQ](#faq--частые-вопросы)
 12. [Полезные ресурсы](#полезные-ресурсы)
+13. [Структура репозитория](#структура-репозитория)
 
 ---
 
@@ -71,7 +73,7 @@ Python остаётся одним из самых популярных язык
 - **автоматизации и скриптов** — парсинг, боты, DevOps-утилиты;
 - **научных вычислений** — NumPy, SciPy, Jupyter.
 
-В 2026 году экосистема Python стала быстрее и удобнее: менеджер пакетов **uv**, линтер **Ruff**, экспериментальный режим без GIL (free-threaded Python), улучшенный интерпретатор и сообщения об ошибках.
+В 2026 году экосистема Python стала быстрее и удобнее: менеджер пакетов **uv**, линтер **Ruff**, быстрые тайпчекеры на Rust (**ty**, **pyrefly**), официально поддерживаемая сборка без GIL (free-threaded Python, с 3.14), t-строки, ленивые импорты (3.15) и более понятные сообщения об ошибках.
 
 ---
 
@@ -80,14 +82,16 @@ Python остаётся одним из самых популярных язык
 | Задача | Инструмент | Зачем |
 |---|---|---|
 | Управление версиями и зависимостями | `uv` | Быстрая замена pip, venv, pip-tools и pyenv |
-| Линтинг и форматирование | `ruff` | Заменяет flake8, isort, black в одном инструменте |
-| Проверка типов | `mypy`, `pyright` | Находит ошибки до запуска |
+| Линтинг и форматирование | `ruff` | Заменяет flake8, isort и black (`ruff check`, `ruff format`) |
+| Проверка типов | `mypy`, `pyright`, `ty` (бета) | Находит ошибки до запуска; `ty` от Astral — очень быстрый, на Rust |
 | Тесты | `pytest` | Стандарт де-факто для тестирования |
 | Веб-API | `FastAPI` | Асинхронный, с автодокументацией OpenAPI |
 | Валидация данных | `pydantic` v2 | Быстрая валидация на основе типов |
 | HTTP-клиент | `httpx` | Синхронный и асинхронный клиент |
 | Таблицы и данные | `polars`, `pandas` | Обработка табличных данных |
 | Pre-commit хуки | `pre-commit` | Автопроверки перед коммитом |
+| Профилирование | `profiling.sampling` (3.15), `py-spy` | Сэмплирующий профайлер, можно подключиться к работающему процессу |
+| CI | GitHub Actions + `astral-sh/setup-uv` | Тесты на нескольких версиях Python |
 
 ### Быстрый старт проекта с uv
 
@@ -106,6 +110,13 @@ uv add --dev pytest ruff mypy
 # запуск
 uv run main.py
 uv run pytest
+
+# проверки
+uv run ruff check . && uv run ruff format .
+uvx ty check                    # быстрый тайпчекер (бета)
+
+# нужная версия Python, в том числе free-threaded сборка
+uv python install 3.14 3.14t
 ```
 
 ### Минимальный `pyproject.toml` с Ruff
@@ -540,7 +551,7 @@ def process(order_id: int) -> None:
 
 ## Продвинутые темы Python (middle+ / senior)
 
-Полный рабочий код каждой темы лежит в папке [`advanced/`](advanced/), а тесты — в [`tests/test_advanced.py`](tests/test_advanced.py). Все примеры проверены на Python 3.12, 3.13 и 3.14 (CI в GitHub Actions).
+Полный рабочий код каждой темы лежит в папке [`advanced/`](advanced/), а тесты — в [`tests/test_advanced.py`](tests/test_advanced.py). Все примеры проверены на Python 3.12, 3.13 и 3.14 (CI в GitHub Actions). Задачи уровня senior с решениями — в разделе [«Практика»](#задачи-уровня-middle--senior).
 
 ```bash
 git clone https://github.com/justxor/python-primery-koda-2026.git
@@ -908,7 +919,7 @@ sql(t"SELECT * FROM users WHERE name = {name}")
 
 ---
 
-## Что нового в Python 3.13 и 3.14
+## Что нового в Python 3.13, 3.14 и 3.15
 
 **Python 3.13:**
 - новый интерактивный REPL с подсветкой и многострочным редактированием;
@@ -922,7 +933,8 @@ sql(t"SELECT * FROM users WHERE name = {name}")
 - `except` и `except*` без скобок при перечислении нескольких исключений (PEP 758);
 - несколько интерпретаторов в одном процессе — `concurrent.interpreters` (PEP 734);
 - модуль `compression.zstd` для сжатия Zstandard (PEP 784);
-- free-threaded сборка получила официальную поддержку (PEP 779).
+- free-threaded сборка получила официальную поддержку (PEP 779);
+- `InterpreterPoolExecutor` в `concurrent.futures` — пул на субинтерпретаторах.
 
 Пример t-строки (Python 3.14):
 
@@ -943,6 +955,45 @@ try:
     connect()
 except TimeoutError, ConnectionRefusedError:
     print("Сервер недоступен")
+```
+
+**Python 3.15** (релиз запланирован на 1 октября 2026 года, [PEP 790](https://peps.python.org/pep-0790/)):
+- **ленивые импорты** `lazy import` (PEP 810) — модуль загружается при первом обращении, программы стартуют быстрее;
+- **распаковка в генераторах списков** `[*L for L in lists]` (PEP 798);
+- встроенные типы **`frozendict`** (PEP 814) и **`sentinel`** (PEP 661);
+- **UTF-8 по умолчанию** для `open()` и других функций ввода-вывода (PEP 686);
+- новый пакет **`profiling`** с сэмплирующим профайлером Tachyon (PEP 799);
+- в типизации: `TypedDict` с дополнительными ключами (PEP 728), `TypeForm` (PEP 747);
+- заметно доработанный экспериментальный JIT-компилятор.
+
+Примеры Python 3.15:
+
+```python
+lazy import json                      # json загрузится только при первом использовании
+lazy from pathlib import Path
+
+lists = [[1, 2], [3, 4], [5]]
+print([*L for L in lists])            # [1, 2, 3, 4, 5]
+
+dicts = [{"a": 1}, {"b": 2}, {"a": 3}]
+print({**d for d in dicts})           # {'a': 3, 'b': 2}
+
+config = frozendict(host="localhost", port=8080)   # неизменяемый и хешируемый
+cache = {config: "подключение"}                    # можно использовать как ключ
+
+MISSING = sentinel("MISSING")         # вместо object() — с понятным repr
+
+
+def get(key: str, default=MISSING):
+    if default is MISSING:
+        ...
+```
+
+Профилирование работающего процесса без перезапуска:
+
+```bash
+python -m profiling.sampling attach 12345
+python -m profiling.sampling run --flamegraph script.py
 ```
 
 ---
@@ -1125,6 +1176,281 @@ assert list(flatten([1, [2, [3, [4]], 5]])) == [1, 2, 3, 4, 5]
 ```
 </details>
 
+### Задачи уровня middle+ / senior
+
+Эти задачи часто дают на собеседованиях и в тестовых заданиях. Полные решения с типами и тесты лежат в [`advanced/tasks_senior.py`](advanced/tasks_senior.py) и [`tests/test_tasks_senior.py`](tests/test_tasks_senior.py).
+
+### Задача 8. TTL-кэш с ограничением размера (уровень: middle+)
+
+Напишите декоратор `@ttl_cache(ttl=60, maxsize=128)`: результат функции живёт `ttl` секунд, а при переполнении вытесняется самая старая запись. Время должно быть подменяемым, чтобы кэш можно было тестировать без `sleep`.
+
+<details>
+<summary>Решение</summary>
+
+```python
+import functools
+import time
+from collections import OrderedDict
+
+
+def ttl_cache(ttl: float, maxsize: int = 128, clock=time.monotonic):
+    def decorator(func):
+        data: OrderedDict = OrderedDict()
+
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            key = (args, tuple(sorted(kwargs.items())))
+            now = clock()
+            if key in data:
+                expires, value = data[key]
+                if expires > now:
+                    data.move_to_end(key)
+                    return value
+                del data[key]                   # запись протухла
+            value = func(*args, **kwargs)
+            data[key] = (now + ttl, value)
+            if len(data) > maxsize:
+                data.popitem(last=False)        # вытесняем самую старую
+            return value
+
+        return wrapper
+    return decorator
+```
+
+**Почему `time.monotonic`, а не `time.time`:** системные часы могут перевести назад, а монотонные — нет.
+</details>
+
+### Задача 9. Асинхронный батчер — решение проблемы N+1 (уровень: senior)
+
+Сотня корутин одновременно вызывает `await loader.load(user_id)`. Нужно склеить их в один запрос `fetch_users([ids])`, убрать дубликаты и раздать каждому его результат.
+
+<details>
+<summary>Решение</summary>
+
+```python
+import asyncio
+
+
+class Batcher:
+    def __init__(self, batch_fn, delay: float = 0.005) -> None:
+        self.batch_fn = batch_fn
+        self.delay = delay
+        self._pending: dict = {}
+        self._timer = None
+
+    def load(self, key) -> asyncio.Future:
+        if key in self._pending:                      # дедупликация
+            return self._pending[key]
+        loop = asyncio.get_running_loop()
+        fut = self._pending[key] = loop.create_future()
+        if self._timer is None:                       # копим ключи несколько мс
+            self._timer = loop.call_later(self.delay, self._flush)
+        return fut
+
+    def _flush(self) -> None:
+        self._timer = None
+        pending, self._pending = self._pending, {}
+        asyncio.get_running_loop().create_task(self._dispatch(pending))
+
+    async def _dispatch(self, pending: dict) -> None:
+        try:
+            result = await self.batch_fn(list(pending))
+        except Exception as exc:
+            for fut in pending.values():
+                fut.set_exception(exc)
+            return
+        for key, fut in pending.items():
+            if key in result:
+                fut.set_result(result[key])
+            else:
+                fut.set_exception(KeyError(key))
+
+
+async def fetch_users(ids: list[int]) -> dict[int, str]:
+    print("SQL: WHERE id IN", ids)                    # один запрос вместо пяти
+    return {i: f"user{i}" for i in ids}
+
+
+async def main() -> None:
+    loader = Batcher(fetch_users)
+    print(await asyncio.gather(*(loader.load(i) for i in [1, 2, 3, 2, 1])))
+
+
+asyncio.run(main())
+```
+
+Так устроен DataLoader в GraphQL-серверах. В полной версии есть ещё лимит `max_batch`.
+</details>
+
+### Задача 10. Порядок установки зависимостей (уровень: middle+)
+
+Дан словарь `{"app": ["web", "db"], "web": ["http"], ...}`. Верните порядок установки, в котором каждый пакет идёт после своих зависимостей, а при цикле выбросьте понятную ошибку.
+
+<details>
+<summary>Решение</summary>
+
+```python
+from collections import defaultdict, deque
+
+
+def install_order(deps: dict[str, list[str]]) -> list[str]:
+    graph = defaultdict(list)
+    indegree: dict[str, int] = {}
+    for node, requires in deps.items():
+        indegree.setdefault(node, 0)
+        for req in requires:
+            indegree.setdefault(req, 0)
+            graph[req].append(node)
+            indegree[node] += 1
+
+    queue = deque(n for n, d in indegree.items() if d == 0)
+    order = []
+    while queue:
+        node = queue.popleft()
+        order.append(node)
+        for nxt in graph[node]:
+            indegree[nxt] -= 1
+            if indegree[nxt] == 0:
+                queue.append(nxt)
+
+    if len(order) != len(indegree):
+        raise ValueError("Циклическая зависимость")
+    return order
+
+
+print(install_order({"app": ["web", "db"], "web": ["http"], "db": ["driver"]}))
+# ['http', 'driver', 'web', 'db', 'app']
+```
+
+Это алгоритм Кана, O(V + E). В стандартной библиотеке есть готовый `graphlib.TopologicalSorter`, но на собеседовании обычно просят написать самому.
+</details>
+
+### Задача 11. Автодополнение поисковой строки (уровень: middle+)
+
+Реализуйте структуру, которая по префиксу `"py"` возвращает N самых частых слов: `python`, `pytest`, …
+
+<details>
+<summary>Решение</summary>
+
+```python
+import heapq
+
+
+class Trie:
+    __slots__ = ("children", "count")
+
+    def __init__(self) -> None:
+        self.children: dict[str, "Trie"] = {}
+        self.count = 0
+
+    def add(self, word: str, times: int = 1) -> None:
+        node = self
+        for ch in word:
+            node = node.children.setdefault(ch, Trie())
+        node.count += times
+
+    def suggest(self, prefix: str, limit: int = 5) -> list[str]:
+        node = self
+        for ch in prefix:
+            if ch not in node.children:
+                return []
+            node = node.children[ch]
+        found, stack = [], [(node, prefix)]
+        while stack:                                    # обход без рекурсии
+            cur, word = stack.pop()
+            if cur.count:
+                found.append((-cur.count, word))
+            stack.extend((child, word + ch) for ch, child in cur.children.items())
+        return [w for _, w in heapq.nsmallest(limit, found)]
+
+
+trie = Trie()
+for word, freq in {"python": 10, "pytest": 7, "pydantic": 5, "pandas": 8}.items():
+    trie.add(word, freq)
+print(trie.suggest("py", 2))   # ['python', 'pytest']
+```
+</details>
+
+### Задача 12. Консистентное хеширование (уровень: senior)
+
+Ключи раскладываются по серверам кэша через `hash(key) % N`. При добавлении сервера почти все ключи «переезжают» и кэш обнуляется. Сделайте так, чтобы переезжало только около `1/N` ключей.
+
+<details>
+<summary>Решение</summary>
+
+```python
+import bisect
+import hashlib
+
+
+class HashRing:
+    def __init__(self, nodes=(), replicas: int = 100) -> None:
+        self.replicas = replicas
+        self._ring: list[tuple[int, str]] = []
+        for node in nodes:
+            self.add(node)
+
+    @staticmethod
+    def _hash(value: str) -> int:        # hash() для str меняется между запусками!
+        return int.from_bytes(hashlib.blake2b(value.encode(), digest_size=8).digest())
+
+    def add(self, node: str) -> None:
+        for i in range(self.replicas):   # виртуальные узлы сглаживают нагрузку
+            bisect.insort(self._ring, (self._hash(f"{node}#{i}"), node))
+
+    def remove(self, node: str) -> None:
+        self._ring = [item for item in self._ring if item[1] != node]
+
+    def get(self, key: str) -> str:
+        idx = bisect.bisect(self._ring, (self._hash(key), ""))
+        return self._ring[idx % len(self._ring)][1]
+
+
+ring = HashRing(["cache-1", "cache-2", "cache-3"])
+keys = [f"user:{i}" for i in range(1000)]
+before = {k: ring.get(k) for k in keys}
+ring.add("cache-4")
+moved = sum(before[k] != ring.get(k) for k in keys)
+print(f"переехало {moved / 10:.1f}% ключей")    # ~25%, а не ~75%
+```
+</details>
+
+### Задача 13. Слияние K отсортированных потоков (уровень: middle+)
+
+Есть K отсортированных источников: файлы логов по десятки гигабайт или бесконечные генераторы. Слейте их в один отсортированный поток, не загружая данные в память.
+
+<details>
+<summary>Решение</summary>
+
+```python
+import heapq
+from collections.abc import Iterable, Iterator
+
+
+def merge_sorted[T](*streams: Iterable[T]) -> Iterator[T]:
+    heap = []
+    for idx, stream in enumerate(streams):
+        it = iter(stream)
+        for first in it:                         # берём первый элемент, если он есть
+            heap.append((first, idx, it))
+            break
+    heapq.heapify(heap)
+    while heap:
+        value, idx, it = heap[0]
+        yield value
+        for nxt in it:
+            heapq.heapreplace(heap, (nxt, idx, it))
+            break
+        else:
+            heapq.heappop(heap)                  # поток закончился
+
+
+print(list(merge_sorted([1, 4, 9], [2, 3, 10], [5])))   # [1, 2, 3, 4, 5, 9, 10]
+```
+
+Сложность — O(N log K) по времени и O(K) по памяти. `idx` в кортеже нужен, чтобы при равных значениях не сравнивать итераторы. В стандартной библиотеке есть `heapq.merge`, но его устройство спрашивают на собеседованиях.
+</details>
+
 ---
 
 ## Мини-проекты для портфолио
@@ -1137,6 +1463,9 @@ assert list(flatten([1, [2, [3, [4]], 5]])) == [1, 2, 3, 4, 5]
 | Парсер цен | HTTP, HTML, расписание | `httpx`, `selectolax` / `BeautifulSoup` |
 | Дашборд по данным | анализ и визуализация | `polars`, `streamlit` |
 | LLM-ассистент | работа с API нейросетей | SDK провайдера, `pydantic` |
+| ИИ-агент с инструментами | tool calling, MCP, асинхронность | SDK провайдера, MCP Python SDK, `httpx` |
+| Кэширующий прокси | консистентное хеширование, TTL, asyncio | `asyncio`, `httpx`, задачи 8 и 12 |
+| Очередь фоновых задач | воркеры, retry, graceful shutdown | `asyncio`, `redis`, паттерны из `advanced/` |
 
 ### Пример: REST API на FastAPI за 30 строк
 
@@ -1271,16 +1600,20 @@ def test_active_users(sample_users: list[dict]) -> None:
 - Чем t-строки (PEP 750) отличаются от f-строк и зачем они нужны?
 - Что такое `ParamSpec` и зачем он декораторам?
 - Как реализовать Circuit Breaker и чем он отличается от retry?
+- Что такое проблема N+1 и как её решает батчинг (DataLoader)?
+- Зачем нужно консистентное хеширование?
+- Что дают ленивые импорты в Python 3.15 и какие у них подводные камни?
+- Чем `frozendict` отличается от `MappingProxyType`?
 
 ---
 
 ## FAQ — частые вопросы
 
 **С чего начать изучение Python в 2026 году?**
-Установите Python 3.13 или 3.14 и `uv`, изучите базовый синтаксис, типы данных, функции, затем ООП и работу с файлами. После этого решайте задачи из раздела «Практика» и делайте мини-проекты.
+Установите Python 3.14 и `uv`, изучите базовый синтаксис, типы данных, функции, затем ООП и работу с файлами. После этого решайте задачи из раздела «Практика» и делайте мини-проекты.
 
 **Какую версию Python выбрать?**
-Для новых проектов — актуальную стабильную (3.13 или 3.14). Для рабочих проектов — ту, что поддерживают ваши зависимости.
+Для новых проектов — Python 3.14: это актуальная стабильная версия. Python 3.15 выходит 1 октября 2026 года; переходите на него, когда ваши зависимости начнут его поддерживать. Для рабочих проектов берите ту версию, которую поддерживают ваши библиотеки.
 
 **Нужна ли типизация в Python?**
 Не обязательна, но в 2026 году это стандарт в командной разработке: меньше ошибок, лучше автодополнение, проще рефакторинг.
@@ -1303,10 +1636,12 @@ def test_active_users(sample_users: list[dict]) -> None:
 
 - [Официальная документация Python](https://docs.python.org/3/)
 - [Что нового в Python 3.14](https://docs.python.org/3/whatsnew/3.14.html)
+- [Что нового в Python 3.15](https://docs.python.org/3.15/whatsnew/3.15.html)
 - [PEP 8 — руководство по стилю кода](https://peps.python.org/pep-0008/)
 - [Real Python](https://realpython.com/)
 - [Документация uv](https://docs.astral.sh/uv/)
 - [Документация Ruff](https://docs.astral.sh/ruff/)
+- [Тайпчекер ty](https://docs.astral.sh/ty/)
 - [Документация FastAPI](https://fastapi.tiangolo.com/ru/)
 - [Документация pytest](https://docs.pytest.org/)
 - [Descriptor HowTo Guide](https://docs.python.org/3/howto/descriptor.html)
@@ -1314,6 +1649,30 @@ def test_active_users(sample_users: list[dict]) -> None:
 - [PEP 750 — t-строки](https://peps.python.org/pep-0750/)
 - [PEP 703 — Python без GIL](https://peps.python.org/pep-0703/)
 - [Руководство по free-threaded Python](https://docs.python.org/3/howto/free-threading-python.html)
+
+---
+
+## Структура репозитория
+
+```text
+python-primery-koda-2026/
+├── README.md                    # руководство: примеры, задачи, вопросы
+├── advanced/                    # продвинутые темы: код, который можно запустить
+│   ├── descriptors.py           # 11. дескрипторы
+│   ├── metaprogramming.py       # 12. __init_subclass__, метаклассы
+│   ├── typing_advanced.py       # 13. PEP 695, Protocol, ParamSpec
+│   ├── asyncio_patterns.py      # 14. паттерны asyncio
+│   ├── concurrency.py           # 15. GIL, free-threading
+│   ├── contextvars_demo.py      # 16. contextvars
+│   ├── performance.py           # 17. производительность и память
+│   ├── generators_advanced.py   # 18. генераторы, ExitStack
+│   ├── patterns.py              # 19. Result, DI, Circuit Breaker
+│   ├── python314.py             # 20. t-строки, annotationlib
+│   └── tasks_senior.py          # решения задач 8–13
+├── tests/                       # pytest-тесты для всего кода
+├── pyproject.toml
+└── .github/workflows/tests.yml  # CI: Python 3.12, 3.13, 3.14
+```
 
 ---
 
@@ -1325,6 +1684,6 @@ def test_active_users(sample_users: list[dict]) -> None:
 
 ---
 
-**Теги:** `python` `python3` `python-примеры` `примеры-кода` `python-2026` `лучшие-практики` `чистый-код` `задачи-по-python` `python-для-начинающих` `asyncio` `fastapi` `pytest` `типизация` `собеседование-python` `python-3-14` `дескрипторы` `метаклассы` `free-threading` `contextvars` `паттерны-проектирования`
+**Теги:** `python` `python3` `python-примеры` `примеры-кода` `python-2026` `лучшие-практики` `чистый-код` `задачи-по-python` `python-для-начинающих` `asyncio` `fastapi` `pytest` `типизация` `собеседование-python` `python-3-14` `дескрипторы` `метаклассы` `free-threading` `contextvars` `паттерны-проектирования` `python-3-15` `задачи-для-senior`
 
 Лицензия: MIT
