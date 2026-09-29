@@ -1,13 +1,26 @@
 # Примеры кода на Python 2026: лучшие практики, разбор и задачи с решениями
 
-> **Python примеры кода 2026** — практическое руководство на русском языке: разбор лучших примеров кода на Python, современные паттерны Python 3.12–3.14, чистый код, асинхронность, типизация, тестирование и задачи для практики с решениями. Подходит для начинающих, junior- и middle-разработчиков, а также для подготовки к собеседованию по Python.
+> **Python примеры кода 2026** — практическое руководство на русском языке: разбор лучших примеров кода на Python, современные паттерны Python 3.12–3.14, чистый код, асинхронность, типизация, тестирование и задачи для практики с решениями. Подходит для начинающих, junior-, middle- и senior-разработчиков, а также для подготовки к собеседованию по Python.
 
 ![Python](https://img.shields.io/badge/Python-3.12%20|%203.13%20|%203.14-blue)
 ![Язык](https://img.shields.io/badge/язык-русский-red)
-![Уровень](https://img.shields.io/badge/уровень-от%20новичка%20до%20middle-green)
+![Уровень](https://img.shields.io/badge/уровень-от%20новичка%20до%20senior-green)
 ![Лицензия](https://img.shields.io/badge/лицензия-MIT-lightgrey)
+![Tests](https://github.com/justxor/python-primery-koda-2026/actions/workflows/tests.yml/badge.svg)
 
-**Ключевые темы:** примеры кода Python, лучшие практики Python 2026, python для начинающих, задачи по Python с решениями, чистый код на Python, асинхронный Python, asyncio примеры, типизация в Python, pytest примеры, FastAPI пример, парсинг на Python, подготовка к собеседованию Python, Python 3.14 новые возможности.
+**Ключевые темы:** примеры кода Python, лучшие практики Python 2026, python для начинающих, задачи по Python с решениями, чистый код на Python, асинхронный Python, asyncio примеры, типизация в Python, pytest примеры, FastAPI пример, парсинг на Python, подготовка к собеседованию Python, Python 3.14 новые возможности, дескрипторы, метаклассы, contextvars, free-threaded Python, t-строки, паттерны проектирования на Python.
+
+---
+
+## Полезные каналы
+
+🖥 **Pythonl** ([канал 1](https://t.me/+p-hGlzVQrqM4MDI6), [канал 2](https://t.me/+DNiTvr30y9BiNzli)) — с помощью понятных картинок и коротких видео авторы объясняют сложные концепции и учат профессиональному подходу в разработке.
+
+🖥 [**Python Интервью**](https://t.me/+sTT6sbZubDM2MWEy) — огромное количество разобранных вопросов с реальных собеседований Python-разработчика.
+
+🧠 **Machine learning** ([канал 1](https://t.me/+pQPz7SU6PMpjODNi), [канал 2](https://t.me/+rn-i1Uz1lDtjNmFi)) — ИИ-инструменты для генерации Python-кода, умные агенты и всё, что нужно знать из области AI.
+
+🔝 [**А здесь мы собрали**](https://t.me/addlist/8vDUwYRGujRmZjFi) целый кладезь полезных Python-ресурсов для прокачки.
 
 ---
 
@@ -26,14 +39,25 @@
    - [Контекстные менеджеры и декораторы](#8-контекстные-менеджеры-и-декораторы)
    - [Генераторы и itertools](#9-генераторы-и-itertools)
    - [Логирование вместо print](#10-логирование-вместо-print)
-4. [Что нового в Python 3.13 и 3.14](#что-нового-в-python-313-и-314)
-5. [Практика: задачи по Python с решениями](#практика-задачи-по-python-с-решениями)
-6. [Мини-проекты для портфолио](#мини-проекты-для-портфолио)
-7. [Тестирование: pytest примеры](#тестирование-pytest-примеры)
-8. [Частые ошибки новичков в Python](#частые-ошибки-новичков-в-python)
-9. [Вопросы с собеседований по Python](#вопросы-с-собеседований-по-python)
-10. [FAQ](#faq--частые-вопросы)
-11. [Полезные ресурсы](#полезные-ресурсы)
+4. [Продвинутые темы Python (middle+ / senior)](#продвинутые-темы-python-middle--senior)
+   - [Дескрипторы](#11-дескрипторы-как-устроены-property-и-валидация-полей)
+   - [Метапрограммирование: `__init_subclass__` и метаклассы](#12-метапрограммирование-__init_subclass__-и-метаклассы)
+   - [Продвинутая типизация: PEP 695, Protocol, ParamSpec](#13-продвинутая-типизация-pep-695-protocol-paramspec-typeis)
+   - [Паттерны asyncio: семафоры, очереди, retry, отмена](#14-паттерны-asyncio-семафоры-очереди-retry-отмена)
+   - [Параллелизм: GIL, free-threading, субинтерпретаторы](#15-параллелизм-gil-free-threading-субинтерпретаторы)
+   - [contextvars: контекст запроса в асинхронном коде](#16-contextvars-контекст-запроса-в-асинхронном-коде)
+   - [Производительность и память](#17-производительность-и-память-__slots__-weakref-профилирование)
+   - [Продвинутые генераторы и ExitStack](#18-продвинутые-генераторы-send-yield-from-exitstack)
+   - [Паттерны: Result, DI, Circuit Breaker](#19-архитектурные-паттерны-result-di-circuit-breaker)
+   - [Python 3.14 в коде: t-строки и annotationlib](#20-python-314-в-коде-t-строки-annotationlib-except-без-скобок)
+5. [Что нового в Python 3.13 и 3.14](#что-нового-в-python-313-и-314)
+6. [Практика: задачи по Python с решениями](#практика-задачи-по-python-с-решениями)
+7. [Мини-проекты для портфолио](#мини-проекты-для-портфолио)
+8. [Тестирование: pytest примеры](#тестирование-pytest-примеры)
+9. [Частые ошибки новичков в Python](#частые-ошибки-новичков-в-python)
+10. [Вопросы с собеседований по Python](#вопросы-с-собеседований-по-python)
+11. [FAQ](#faq--частые-вопросы)
+12. [Полезные ресурсы](#полезные-ресурсы)
 
 ---
 
@@ -514,6 +538,376 @@ def process(order_id: int) -> None:
 
 ---
 
+## Продвинутые темы Python (middle+ / senior)
+
+Полный рабочий код каждой темы лежит в папке [`advanced/`](advanced/), а тесты — в [`tests/test_advanced.py`](tests/test_advanced.py). Все примеры проверены на Python 3.12, 3.13 и 3.14 (CI в GitHub Actions).
+
+```bash
+git clone https://github.com/justxor/python-primery-koda-2026.git
+cd python-primery-koda-2026
+uv run python -m advanced.asyncio_patterns   # запустить любой пример
+uv run --with pytest pytest                  # прогнать все тесты
+```
+
+| # | Тема | Файл | Уровень |
+|---|------|------|---------|
+| 11 | Дескрипторы, `__set_name__`, ленивые атрибуты | [`descriptors.py`](advanced/descriptors.py) | middle+ |
+| 12 | `__init_subclass__`, метаклассы, `type()` | [`metaprogramming.py`](advanced/metaprogramming.py) | senior |
+| 13 | PEP 695, `Protocol`, `ParamSpec`, `overload`, `TypeIs` | [`typing_advanced.py`](advanced/typing_advanced.py) | middle+ |
+| 14 | Semaphore, Queue, retry, `timeout`, `shield` | [`asyncio_patterns.py`](advanced/asyncio_patterns.py) | middle+ |
+| 15 | GIL, free-threading, `InterpreterPoolExecutor` | [`concurrency.py`](advanced/concurrency.py) | senior |
+| 16 | `contextvars` и request_id в логах | [`contextvars_demo.py`](advanced/contextvars_demo.py) | middle+ |
+| 17 | `__slots__`, `weakref`, `tracemalloc`, `cProfile` | [`performance.py`](advanced/performance.py) | middle+ |
+| 18 | `send()`, `yield from`, конвейеры, `ExitStack` | [`generators_advanced.py`](advanced/generators_advanced.py) | middle+ |
+| 19 | Result, DI, `singledispatch`, Circuit Breaker, EventBus | [`patterns.py`](advanced/patterns.py) | senior |
+| 20 | t-строки, `annotationlib`, `except A, B` | [`python314.py`](advanced/python314.py) | все |
+
+---
+
+### 11. Дескрипторы: как устроены property и валидация полей
+
+`property`, `classmethod`, `staticmethod` и даже обычные методы — это дескрипторы. Свой дескриптор позволяет один раз описать правило и переиспользовать его в любом классе:
+
+```python
+class Positive:
+    def __set_name__(self, owner, name):        # Python сам сообщит имя атрибута
+        self.name, self.private = name, f"_{name}"
+
+    def __get__(self, instance, owner=None):
+        return self if instance is None else getattr(instance, self.private)
+
+    def __set__(self, instance, value):
+        if not isinstance(value, (int, float)) or value <= 0:
+            raise ValueError(f"{self.name} должно быть > 0, получено {value!r}")
+        setattr(instance, self.private, value)
+
+
+class Product:
+    price = Positive()
+    quantity = Positive()
+
+    def __init__(self, price, quantity):
+        self.price = price          # вызывает Positive.__set__
+        self.quantity = quantity
+
+
+Product(100, 2)
+Product(-1, 2)   # ValueError: price должно быть > 0, получено -1
+```
+
+**Важно:** дескриптор с `__set__` (data descriptor) имеет приоритет над `__dict__` экземпляра, а без `__set__` — нет. На этом построен `functools.cached_property`: после первого вызова значение кладётся в `__dict__` и дескриптор больше не вызывается.
+
+---
+
+### 12. Метапрограммирование: `__init_subclass__` и метаклассы
+
+В 90% случаев вместо метакласса хватает `__init_subclass__` — например, для автоматического реестра плагинов:
+
+```python
+class Exporter:
+    registry: dict[str, type["Exporter"]] = {}
+
+    def __init_subclass__(cls, /, fmt: str, **kwargs):
+        super().__init_subclass__(**kwargs)
+        Exporter.registry[fmt] = cls
+
+
+class JsonExporter(Exporter, fmt="json"): ...
+class CsvExporter(Exporter, fmt="csv"): ...
+
+print(Exporter.registry)   # {'json': <class JsonExporter>, 'csv': <class CsvExporter>}
+```
+
+Метакласс нужен, когда надо вмешаться в сам процесс создания экземпляров или класса — например, синглтон:
+
+```python
+class SingletonMeta(type):
+    _instances = {}
+
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super().__call__(*args, **kwargs)
+        return cls._instances[cls]
+
+
+class Settings(metaclass=SingletonMeta): ...
+
+assert Settings() is Settings()
+```
+
+**Порядок выбора:** декоратор класса → `__init_subclass__` → `__set_name__` → метакласс.
+
+---
+
+### 13. Продвинутая типизация: PEP 695, Protocol, ParamSpec, TypeIs
+
+```python
+from collections.abc import Callable
+from typing import Protocol, Self
+import functools
+
+type JSON = dict[str, JSON] | list[JSON] | str | int | float | bool | None   # рекурсивный алиас
+
+
+class Stack[T]:                            # дженерик-класс без TypeVar
+    def __init__(self) -> None:
+        self._items: list[T] = []
+
+    def push(self, item: T) -> Self:       # Self — для цепочек вызовов
+        self._items.append(item)
+        return self
+
+
+class Comparable(Protocol):                # структурная типизация
+    def __lt__(self, other: Self, /) -> bool: ...
+
+
+def max_item[C: Comparable](items: list[C]) -> C:
+    return max(items)
+
+
+def logged[**P, R](func: Callable[P, R]) -> Callable[P, R]:   # ParamSpec
+    @functools.wraps(func)
+    def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
+        print("вызов", func.__name__)
+        return func(*args, **kwargs)
+    return wrapper
+```
+
+Благодаря `ParamSpec` IDE и mypy видят настоящую сигнатуру задекорированной функции, а не `(*args, **kwargs)`. `TypeIs` (Python 3.13) позволяет писать собственные функции сужения типа, которые работают в обе стороны — в `if` и в `else`.
+
+---
+
+### 14. Паттерны asyncio: семафоры, очереди, retry, отмена
+
+**Ограничение параллелизма** — не больше N запросов одновременно:
+
+```python
+import asyncio
+
+
+async def gather_limited(coros, limit: int):
+    sem = asyncio.Semaphore(limit)
+
+    async def run(coro):
+        async with sem:
+            return await coro
+
+    async with asyncio.TaskGroup() as tg:
+        tasks = [tg.create_task(run(c)) for c in coros]
+    return [t.result() for t in tasks]
+```
+
+**Повтор с экспоненциальной задержкой и джиттером** (чтобы тысяча клиентов не повторяла запрос одновременно):
+
+```python
+import random
+
+
+async def retry_async(func, *, attempts=5, base_delay=0.1, max_delay=5.0):
+    for attempt in range(attempts):
+        try:
+            return await func()
+        except (ConnectionError, TimeoutError):
+            if attempt == attempts - 1:
+                raise
+            await asyncio.sleep(random.uniform(0, min(max_delay, base_delay * 2**attempt)))
+```
+
+Ещё в файле: producer/consumer на `asyncio.Queue` с backpressure, `asyncio.timeout()`, асинхронные генераторы с корректным закрытием, `asyncio.shield()` для операций, которые нельзя прерывать, и `asyncio.to_thread()` для блокирующего кода.
+
+---
+
+### 15. Параллелизм: GIL, free-threading, субинтерпретаторы
+
+| Задача | Инструмент |
+|--------|------------|
+| I/O: сеть, диск, БД | `asyncio`, `ThreadPoolExecutor` |
+| CPU: вычисления | `ProcessPoolExecutor` |
+| CPU в free-threaded сборке (3.13t / 3.14t) | обычные потоки — GIL выключен |
+| CPU с изоляцией, но дешевле процессов (3.14+) | `InterpreterPoolExecutor` |
+
+```python
+import sys, sysconfig
+import concurrent.futures as cf
+
+print("free-threaded:", bool(sysconfig.get_config_var("Py_GIL_DISABLED")))
+print("GIL включён:", sys._is_gil_enabled())      # Python 3.13+
+
+
+def best_executor() -> type[cf.Executor]:
+    if not sys._is_gil_enabled():
+        return cf.ThreadPoolExecutor
+    if hasattr(cf, "InterpreterPoolExecutor"):    # Python 3.14+
+        return cf.InterpreterPoolExecutor
+    return cf.ProcessPoolExecutor
+```
+
+**Подвох:** без GIL гонки данных становятся реальностью. `counter += 1` не атомарна — защищайте общее состояние через `threading.Lock`.
+
+---
+
+### 16. contextvars: контекст запроса в асинхронном коде
+
+Глобальные переменные и `threading.local` ломаются в asyncio: в одном потоке одновременно выполняются сотни запросов. `ContextVar` хранит значение отдельно для каждой задачи:
+
+```python
+from contextvars import ContextVar
+import logging
+
+request_id: ContextVar[str] = ContextVar("request_id", default="-")
+
+
+class RequestIdFilter(logging.Filter):
+    def filter(self, record):
+        record.request_id = request_id.get()   # id запроса в каждой строке лога
+        return True
+
+
+async def handle(rid: str):
+    token = request_id.set(rid)
+    try:
+        await do_work()        # глубоко внутри request_id.get() вернёт rid
+    finally:
+        request_id.reset(token)
+```
+
+Так работают middleware в FastAPI/Starlette, OpenTelemetry и structlog.
+
+---
+
+### 17. Производительность и память: `__slots__`, weakref, профилирование
+
+```python
+from dataclasses import dataclass
+
+
+@dataclass(slots=True, frozen=True)
+class Point:
+    x: float
+    y: float
+# экземпляр без __dict__: ~48 байт вместо ~340, доступ к атрибутам быстрее
+```
+
+- **`functools.cached_property`** — вычислить один раз и запомнить на экземпляре.
+- **`functools.lru_cache`** — мемоизация чистых функций, `cache_info()` показывает эффективность.
+- **`weakref.WeakValueDictionary`** — кэш, который не мешает сборщику мусора удалять объекты.
+- **`tracemalloc`** — где и сколько памяти выделено; **`cProfile` + `pstats`** — где тратится время.
+- **`timeit`** — честное сравнение двух вариантов кода.
+
+```bash
+python -m cProfile -s cumulative script.py | head -20
+python -X importtime -c "import mymodule"     # что медленно импортируется
+```
+
+**Правило:** сначала измерьте, потом оптимизируйте.
+
+---
+
+### 18. Продвинутые генераторы: `send()`, `yield from`, ExitStack
+
+```python
+def running_average():
+    total = count = 0
+    average = 0.0
+    while True:
+        value = yield average          # получаем значение через send()
+        total += value
+        count += 1
+        average = total / count
+
+
+avg = running_average()
+next(avg)                              # «прогрев» до первого yield
+avg.send(10); avg.send(20)             # 15.0
+```
+
+**Конвейер генераторов** обрабатывает лог в десятки гигабайт с постоянным потреблением памяти:
+
+```python
+errors = count_by("service", only("ERROR", parse(open("app.log"))))
+```
+
+**`ExitStack`** — когда количество контекстных менеджеров заранее неизвестно:
+
+```python
+from contextlib import ExitStack
+
+with ExitStack() as stack:
+    files = [stack.enter_context(open(p, encoding="utf-8")) for p in paths]
+    ...   # все файлы гарантированно закроются
+```
+
+---
+
+### 19. Архитектурные паттерны: Result, DI, Circuit Breaker
+
+**Ошибки как значения** + `match/case`:
+
+```python
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class Ok[T]:
+    value: T
+
+
+@dataclass(frozen=True)
+class Err[E]:
+    error: E
+
+
+type Result[T, E] = Ok[T] | Err[E]
+
+
+def safe_divide(a: float, b: float) -> Result[float, str]:
+    return Err("деление на ноль") if b == 0 else Ok(a / b)
+
+
+match safe_divide(1, 0):
+    case Ok(value):
+        print("результат", value)
+    case Err(error):
+        print("ошибка", error)
+```
+
+**Внедрение зависимостей через `Protocol`:** бизнес-логика зависит от интерфейса `UserRepository`, а не от PostgreSQL. В тестах подставляется `InMemoryUserRepo` — без моков и `patch`.
+
+**Circuit Breaker** — после N ошибок подряд перестаём обращаться к упавшему сервису на время `reset_timeout`, затем пробуем снова (состояния closed → open → half-open). Полная реализация и тесты с подменой часов — в [`patterns.py`](advanced/patterns.py).
+
+---
+
+### 20. Python 3.14 в коде: t-строки, annotationlib, except без скобок
+
+**t-строки (PEP 750)** выглядят как f-строки, но возвращают объект `Template`, а не готовую строку. Это позволяет безопасно обработать подстановки — например, экранировать HTML или превратить запрос в параметризованный SQL:
+
+```python
+from string.templatelib import Interpolation, Template
+
+
+def sql(template: Template) -> tuple[str, list]:
+    query, params = [], []
+    for part in template:
+        if isinstance(part, Interpolation):
+            query.append("?")
+            params.append(part.value)
+        else:
+            query.append(part)
+    return "".join(query), params
+
+
+name = "Robert'); DROP TABLE students;--"
+sql(t"SELECT * FROM users WHERE name = {name}")
+# ('SELECT * FROM users WHERE name = ?', ["Robert'); DROP TABLE students;--"])
+```
+
+**Отложенные аннотации (PEP 649):** можно ссылаться на класс, объявленный ниже, без кавычек и `from __future__ import annotations`; читать аннотации — через `annotationlib.get_annotations()`.
+
+**PEP 758:** `except ValueError, TypeError:` — скобки больше не обязательны (если нет `as`).
+
+---
+
 ## Что нового в Python 3.13 и 3.14
 
 **Python 3.13:**
@@ -864,6 +1258,20 @@ def test_active_users(sample_users: list[dict]) -> None:
 - Поверхностное и глубокое копирование: `copy` vs `deepcopy`.
 - Что такое `*args` и `**kwargs`?
 
+**Продвинутый уровень (middle+ / senior):**
+
+- Что такое дескриптор? Чем data descriptor отличается от non-data? Как устроен `property`?
+- Когда нужен метакласс, а когда достаточно `__init_subclass__` или декоратора класса?
+- Как работает `asyncio.TaskGroup` и что происходит с остальными задачами, если одна упала?
+- Как ограничить число одновременных запросов в asyncio? Зачем джиттер в retry?
+- Чем `contextvars` отличается от `threading.local` и почему это важно для asyncio?
+- Что даёт free-threaded Python и какие проблемы он создаёт для существующего кода?
+- Чем `ProcessPoolExecutor` отличается от `InterpreterPoolExecutor` (3.14)?
+- Как найти утечку памяти? Что покажут `tracemalloc` и `gc.get_referrers`?
+- Чем t-строки (PEP 750) отличаются от f-строк и зачем они нужны?
+- Что такое `ParamSpec` и зачем он декораторам?
+- Как реализовать Circuit Breaker и чем он отличается от retry?
+
 ---
 
 ## FAQ — частые вопросы
@@ -883,6 +1291,9 @@ def test_active_users(sample_users: list[dict]) -> None:
 **Где практиковаться в Python?**
 Задачи из этого репозитория, LeetCode, Codewars, Stepik, Advent of Code, а также собственные pet-проекты.
 
+**С чего начать продвинутые темы?**
+С раздела [«Продвинутые темы»](#продвинутые-темы-python-middle--senior): запустите файлы из папки `advanced/`, прочитайте тесты и попробуйте изменить код так, чтобы тест упал, — это лучший способ понять, как всё работает.
+
 **Как подготовиться к собеседованию Python-разработчика?**
 Повторите базовые структуры данных, генераторы, декораторы, асинхронность, ООП, тестирование, SQL и Git. Решите 30–50 алгоритмических задач и подготовьте 1–2 проекта для портфолио.
 
@@ -898,6 +1309,11 @@ def test_active_users(sample_users: list[dict]) -> None:
 - [Документация Ruff](https://docs.astral.sh/ruff/)
 - [Документация FastAPI](https://fastapi.tiangolo.com/ru/)
 - [Документация pytest](https://docs.pytest.org/)
+- [Descriptor HowTo Guide](https://docs.python.org/3/howto/descriptor.html)
+- [PEP 695 — синтаксис параметров типов](https://peps.python.org/pep-0695/)
+- [PEP 750 — t-строки](https://peps.python.org/pep-0750/)
+- [PEP 703 — Python без GIL](https://peps.python.org/pep-0703/)
+- [Руководство по free-threaded Python](https://docs.python.org/3/howto/free-threading-python.html)
 
 ---
 
@@ -909,6 +1325,6 @@ def test_active_users(sample_users: list[dict]) -> None:
 
 ---
 
-**Теги:** `python` `python3` `python-примеры` `примеры-кода` `python-2026` `лучшие-практики` `чистый-код` `задачи-по-python` `python-для-начинающих` `asyncio` `fastapi` `pytest` `типизация` `собеседование-python` `python-3-14`
+**Теги:** `python` `python3` `python-примеры` `примеры-кода` `python-2026` `лучшие-практики` `чистый-код` `задачи-по-python` `python-для-начинающих` `asyncio` `fastapi` `pytest` `типизация` `собеседование-python` `python-3-14` `дескрипторы` `метаклассы` `free-threading` `contextvars` `паттерны-проектирования`
 
 Лицензия: MIT
